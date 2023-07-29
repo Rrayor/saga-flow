@@ -1,4 +1,4 @@
-package com.benjaminsimon.sagaflowbackend;
+package com.rrayor.sagaflowbackend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
