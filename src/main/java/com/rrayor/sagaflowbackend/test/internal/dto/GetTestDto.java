@@ -1,4 +1,4 @@
-package com.rrayor.sagaflowbackend.test;
+package com.rrayor.sagaflowbackend.test.internal.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

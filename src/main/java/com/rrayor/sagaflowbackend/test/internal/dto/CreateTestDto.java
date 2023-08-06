@@ -1,4 +1,4 @@
-package com.rrayor.sagaflowbackend.test;
+package com.rrayor.sagaflowbackend.test.internal.dto;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

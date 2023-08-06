@@ -1,8 +1,8 @@
 package com.rrayor.sagaflowbackend.test.internal.service;
 
-import com.rrayor.sagaflowbackend.test.CreateTestDto;
-import com.rrayor.sagaflowbackend.test.GetTestDto;
-import com.rrayor.sagaflowbackend.test.internal.entity.TestEntity;
+import com.rrayor.sagaflowbackend.test.internal.dto.CreateTestDto;
+import com.rrayor.sagaflowbackend.test.internal.dto.GetTestDto;
+import com.rrayor.sagaflowbackend.test.TestEntity;
 import com.rrayor.sagaflowbackend.test.internal.mapper.TestMapper;
 import com.rrayor.sagaflowbackend.test.internal.repository.TestRepository;
 import io.micrometer.observation.annotation.Observed;
