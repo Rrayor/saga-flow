@@ -8,7 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
       </profile>
-      <profile name="Annotation profile for saga-flow-backend" enabled="true">
+      <profile name="Annotation profile for saga-flow" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -17,17 +17,13 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.28/lombok-1.18.28.jar" />
         </processorPath>
-        <module name="saga-flow-backend" />
+        <module name="saga-flow" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="saga-flow" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="saga-flow" options="-parameters" />
-      <module name="saga-flow-backend" options="-parameters -Amapstruct.defaultComponentModel=spring" />
+      <module name="saga-flow" options="-parameters -Amapstruct.defaultComponentModel=spring" />
     </option>
   </component>
 </project>
