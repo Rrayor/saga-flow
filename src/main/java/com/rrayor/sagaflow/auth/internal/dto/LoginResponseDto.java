@@ -8,12 +8,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-// TODO: some audit data? - #17
 public class LoginResponseDto {
 
     @JsonProperty("access_token")
     private String accessToken;
 
-    @JsonProperty("refresh_token")
-    private String refreshToken;
+    // TODO: Decide if we need refresh tokens
 }

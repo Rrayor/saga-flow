@@ -2,20 +2,7 @@ package com.rrayor.sagaflow.auth.internal.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class LoginRequestDto {
+public record LoginRequestDto(@NotNull @NotBlank String username, @NotNull @NotBlank String password) {
 
-    @NotNull
-    @NotBlank
-    private String username;
-
-    @NotNull
-    @NotBlank
-    private String password;
 }

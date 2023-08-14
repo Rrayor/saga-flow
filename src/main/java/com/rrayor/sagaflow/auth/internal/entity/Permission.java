@@ -3,6 +3,7 @@ package com.rrayor.sagaflow.auth.internal.entity;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+@Getter
 @RequiredArgsConstructor
 public enum Permission {
     ADMIN_READ("admin:read"),
@@ -12,6 +13,5 @@ public enum Permission {
 
     ;
 
-    @Getter
-    private final String permission;
+    private final String permissionKey;
 }

@@ -30,9 +30,6 @@ import java.util.Collections;
 // TODO: extend AuditEntity - #17
 public class AuthUserEntity implements UserDetails {
 
-    @Transient
-    private static final BCryptPasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder(10, new SecureRandom());
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -46,16 +43,6 @@ public class AuthUserEntity implements UserDetails {
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private Role role;
-
-    @PrePersist
-    private void encryptPassword() {
-        this.password = PASSWORD_ENCODER.encode(password);
-    }
-
-    @Transient
-    public static BCryptPasswordEncoder getPasswordEncoder() {
-        return PASSWORD_ENCODER;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

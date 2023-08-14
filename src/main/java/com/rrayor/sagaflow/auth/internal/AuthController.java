@@ -16,13 +16,13 @@ public class AuthController {
 
     private final BasicAuthService authService;
 
-    @PostMapping("")
-    public LoginResponseDto register(@RequestBody @Valid RegisterRequestDto dto) {
+    @PostMapping("/")
+    public LoginResponseDto register(@RequestBody @Valid final RegisterRequestDto dto) {
         return authService.register(dto);
     }
 
     @PostMapping("/login")
-    public LoginResponseDto login(@RequestBody @Valid LoginRequestDto dto) {
+    public LoginResponseDto login(@RequestBody @Valid final LoginRequestDto dto) {
         return authService.login(dto);
     }
 }

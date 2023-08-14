@@ -12,37 +12,33 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class BasicAuthService implements AuthService {
 
     private final AuthUserRepository repository;
-    private final JwtService jwtService;
+    private final BasicJwtService basicJwtService;
     private final AuthenticationManager authenticationManager;
     private final AuthUserMapper authUserMapper;
 
     public LoginResponseDto register(final RegisterRequestDto dto) {
-        AuthUserEntity savedUser = repository.save(authUserMapper.toEntity(dto));
-        String jwtToken = jwtService.generateToken(savedUser);
-        String refreshToken = jwtService.generateRefreshToken(savedUser);
-        return new LoginResponseDto(jwtToken, refreshToken);
+        final AuthUserEntity savedUser = repository.save(authUserMapper.toEntity(dto));
+        final String jwtToken = basicJwtService.generateToken(savedUser);
+        return new LoginResponseDto(jwtToken);
     }
 
     @Override
     public LoginResponseDto login(final LoginRequestDto dto) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        dto.getUsername(),
-                        dto.getPassword()
+                        dto.username(),
+                        dto.password()
                 )
         );
-        AuthUserEntity user = repository.findByUsername(dto.getUsername())
+        final AuthUserEntity user = repository.findByUsername(dto.username())
                 .orElseThrow();
-        String jwtToken = jwtService.generateToken(user);
-        String refreshToken = jwtService.generateRefreshToken(user);
-        return new LoginResponseDto(jwtToken, refreshToken);
+        final String jwtToken = basicJwtService.generateToken(user);
+        return new LoginResponseDto(jwtToken);
     }
 }

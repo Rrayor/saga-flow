@@ -1,6 +1,6 @@
 package com.rrayor.sagaflow.auth.internal.config;
 
-import com.rrayor.sagaflow.auth.internal.service.JwtService;
+import com.rrayor.sagaflow.auth.internal.service.BasicJwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,31 +21,29 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final JwtService jwtService;
+    private final BasicJwtService basicJwtService;
     private final UserDetailsService userDetailsService;
 
     @Override
     protected void doFilterInternal(
-            @NonNull HttpServletRequest request,
-            @NonNull HttpServletResponse response,
-            @NonNull FilterChain filterChain
+            @NonNull final HttpServletRequest request,
+            @NonNull final HttpServletResponse response,
+            @NonNull final FilterChain filterChain
     ) throws ServletException, IOException {
-        if (request.getServletPath().contains("/api/v1/auth")) {
+        if (request.getServletPath().contains("/auth")) {
             filterChain.doFilter(request, response);
             return;
         }
         final String authHeader = request.getHeader("Authorization");
-        final String jwt;
-        final String userEmail;
-        if (authHeader == null ||!authHeader.startsWith("Bearer ")) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
-        jwt = authHeader.substring(7);
-        userEmail = jwtService.extractUsername(jwt);
+        final String jwt = authHeader.substring(7);
+        final String userEmail = basicJwtService.extractUsername(jwt);
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
-            if (jwtService.isTokenValid(jwt, userDetails)) {
+            if (basicJwtService.isTokenValid(jwt, userDetails)) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,
