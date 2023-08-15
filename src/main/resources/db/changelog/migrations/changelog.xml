@@ -2,11 +2,27 @@
     <!--TODO: Added test table, remove later-->
     <changeSet id="20230801-1_create_test_table_to_be_removed_later" author="rrayor">
         <createTable tableName="test">
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="test_varchar" type="varchar(255)">
                 <constraints nullable="true" />
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="20230814-1_create_auth_user_table_for_authentication" author="rrayor">
+        <createTable tableName="auth_user">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="username" type="varchar(32)">
+                <constraints unique="true" nullable="false" />
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="role" type="varchar(255)" defaultValue="USER">
+                <constraints nullable="false" />
             </column>
         </createTable>
     </changeSet>
