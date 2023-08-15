@@ -34,7 +34,7 @@ public class AuthUserEntity implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_name", length = 32, nullable = false, unique = true)
+    @Column(name = "username", length = 32, nullable = false, unique = true)
     private String username;
 
     @Column(name = "password", nullable = false)
