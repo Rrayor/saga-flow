@@ -22,6 +22,7 @@ public class BasicAuthService implements AuthService {
     private final AuthenticationManager authenticationManager;
     private final AuthUserMapper authUserMapper;
 
+    @Override
     public LoginResponseDto register(final RegisterRequestDto dto) {
         final AuthUserEntity savedUser = repository.save(authUserMapper.toEntity(dto));
         final String jwtToken = basicJwtService.generateToken(savedUser);
