@@ -14,9 +14,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.security.SecureRandom;
 import java.util.Collection;
@@ -29,6 +29,9 @@ import java.util.Collections;
 @Table(name = "auth_user")
 // TODO: extend AuditEntity - #17
 public class AuthUserEntity implements UserDetails {
+
+    @Transient
+    private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10, new SecureRandom());
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,6 +46,11 @@ public class AuthUserEntity implements UserDetails {
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private Role role;
+
+    @PrePersist
+    private void encryptPassword() {
+        password = passwordEncoder.encode(password);
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

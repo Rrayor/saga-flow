@@ -46,11 +46,11 @@ y
 Isrc/main/java/com/rrayor/sagaflow/auth/internal/dto/LoginResponseDto.java,6\8\68c5cd4db3ea500e002ef4954f73f4e5afa001fe
 p
 @src/main/java/com/rrayor/sagaflow/auth/internal/entity/Role.java,0\1\01e773cad1fa5504bfa20dbd5308989a80df3011
-}
-Msrc/main/java/com/rrayor/sagaflow/auth/internal/config/ApplicationConfig.java,e\f\efd019d2c3aa7bb835ce849b1b6d7a342e9b8a9b
 v
 Fsrc/main/java/com/rrayor/sagaflow/auth/internal/entity/Permission.java,4\a\4ae8253a582209764110f8c5085dd51c2fb6561f
 w
 Gsrc/main/java/com/rrayor/sagaflow/auth/internal/service/JwtService.java,a\8\a82bb54a9fe6ff3f9675c171327782e39f8fbc24
 x
 Hsrc/main/java/com/rrayor/sagaflow/auth/internal/dto/LoginRequestDto.java,c\c\cc6b16823583055a0bf6d649cfcd7b53f2a5f2b6
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
