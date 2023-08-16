@@ -1,5 +1,6 @@
 package com.rrayor.sagaflow.auth.internal.entity;
 
+import com.rrayor.sagaflow.core.AuditEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -12,6 +13,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,13 +24,13 @@ import java.security.SecureRandom;
 import java.util.Collection;
 import java.util.Collections;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "auth_user")
-// TODO: extend AuditEntity - #17
-public class AuthUserEntity implements UserDetails {
+public class AuthUserEntity extends AuditEntity implements UserDetails {
 
     @Transient
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10, new SecureRandom());

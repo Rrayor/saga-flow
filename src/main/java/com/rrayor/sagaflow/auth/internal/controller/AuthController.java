@@ -1,4 +1,4 @@
-package com.rrayor.sagaflow.auth.internal;
+package com.rrayor.sagaflow.auth.internal.controller;
 
 import com.rrayor.sagaflow.auth.internal.dto.LoginRequestDto;
 import com.rrayor.sagaflow.auth.internal.dto.LoginResponseDto;
